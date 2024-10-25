@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GITHUB CDN | Experiment By iYonn</title>
+    <!-- Meta Description -->
+    <meta name="description" content="Free Hosting Cdn Dengan Server Repository Github">
+
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:site_name" content="Github Hosting CDN">
+    <meta property="og:title" content="GITHUB CDN | Experiment By iYonn">
+    <meta property="og:description" content="Free Hosting Cdn Dengan Server Repository Github">
+    <meta property="og:image" content="https://github-cdn.us.kg/uploads/logo.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github-cdn.us.kg/">
+
+    <!-- Instagram Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Github Hosting CDN">
+    <meta property="og:title" content="GITHUB CDN | Experiment By iYonn">
+    <meta property="og:description" content="Free Hosting Cdn Dengan Server Repository Github">
+    <meta property="og:image" content="https://github-cdn.us.kg/uploads/logo.jpg">
+    <meta property="og:url" content="https://github-cdn.us.kg/">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "iYonn",
+      "url": "https://iyonncdn.vercel.app",
+      "logo": "https://github-cdn.us.kg/uploads/logo.jpg",
+      "sameAs": [
+        "https://github.com/Shannzx10",
+        "https://endpoint.web.id",
+        "https://www.youtube.com/@ShannModerz",
+        "https://wa.me/6282142770930",
+      ]
+   }
+   </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: white;
+        }
+
+        .file-upload {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            border: 2px dashed #e94560;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #16213e;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            flex-direction: column;
+        }
+
+        .file-upload:hover {
+            background-color: #1a1a2e;
+        }
+
+        .file-upload input[type="file"] {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        #fileName {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .small-text {
+            font-size: 12px;
+            color: #b0b0b0;
+        }
+        
+        .text-info {
+            font-size: 12px;
+            color: #b0b0b0;
+            padding-top: 7px;
+        }
+
+        button {
+            background-color: #e94560;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 8px;
+            width: 300px;
+            height: 34px;
+            z-index: 1001;
+        }
+
+        button:hover {
+            background-color: #d33a54;
+        }
+        
+        .loading {
+            border: 6px solid #e94560; /* Warna merah untuk lingkaran luar */
+            border-top: 6px solid #ffffff; /* Warna putih untuk putaran */
+            border-radius: 50%; /* Membuat lingkaran sempurna */
+            width: 30px; /* Ukuran loading yang lebih kecil */
+            height: 30px; /* Ukuran loading yang lebih kecil */
+            animation: spin 1s linear infinite; /* Animasi berputar */
+            position: absolute; /* Posisi absolut */
+            top: 35%; /* Posisikan di tengah vertikal */
+            left: 43%;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .link-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        .link-box {
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px solid green;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #16213e;
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+
+        .copy-button {
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80px;
+            height: 34px;
+            margin-top: 0;
+            align-self: flex-start;
+        }
+
+        .copy-button:hover {
+            background-color: #d33a54;
+        }
+
+        .question {
+            margin-top: 8px;
+            font-size: 15px;
+            color: #b0b0b0;
+        }
+
+        .api-link {
+            color: #e94560;
+            cursor: pointer;
+        }
+
+        .notification {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Latar belakang hitam transparan */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #e94560;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            color: #000;
+            font-family: monospace;
+            overflow: auto;
+            background-color: #1e1e1e;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .code-container {
+            display: flex;
+            font-family: monospace;
+        }
+
+        .line-numbers {
+            padding: 10px;
+            background-color: #2d2d2d;
+            color: #888;
+            text-align: right;
+            user-select: none;
+            padding-right: 15px;
+        }
+
+        .code {
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            overflow: auto;
+            white-space: pre;
+            flex-grow: 1;
+        }
+        
+        .copy-code {
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 40px;
+            height: 30px;
+            align-self: flex-start;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.css" />
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    <h1>GITHUB CDN</h1>
+    <div class="file-upload" id="fileUpload">
+        <span id="fileName">📂 Select Your File</span>        
+        <span class="small-text">experiment by iYonn</span>
+        <input type="file" id="fileInput" />
+        <div class="loading" id="loading" style="display: none;"></div> <!-- Loading element -->
+    </div>
+    <span class="text-info">max file size 50 MB</span>
+    <button id="uploadButton">Upload</button>
+    <div class="link-container" id="linkContainer" style="display: none;">
+        <div class="link-box" id="linkBox"></div>
+        <button class="copy-button" id="copyButton">Copy</button>
+    </div>
+    <span class="question">try using this cdn with <span class="api-link" id="apiLink">API</span> server</span>
+
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Javascript</h2>
+            <button class="copy-code" id="copyCodeButton">Copy</button>
+            <div class="code-container">
+                <pre class="line-numbers language-javascript"><code id="codeSnippet"><span class="keyword">const</span> axios = <span class="string">require("axios")</span>;
+<span class="keyword">const</span> fs = <span class="string">require("fs")</span>;
+<span class="keyword">const</span> FormData = <span class="string">require("form-data")</span>;
+
+<span class="keyword">async</span> <span class="function">function</span> githubCdn(path) {
+  <span class="keyword">const</span> form = <span class="function">new</span> FormData();
+
+  <span class="keyword">const</span> fileStream = fs.createReadStream(path);
+  form.append(<span class="string">"file"</span>, fileStream);
+
+  <span class="keyword">try</span> {
+    <span class="keyword">const</span> response = <span class="keyword">await</span> axios.post(<span class="string">"https://github-cdn.us.kg/upload"</span>, form, {
+      headers: {
+        ...form.getHeaders(), 
+      },
+    });
+
+    <span class="keyword">return</span> response.data
+  } <span class="keyword">catch</span>(error) {
+    <span class="keyword">return</span> error.message
+  }
+}
+
+module.exports = <span class="keyword">githubCdn</span></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Pilih File';
+            document.getElementById('fileName').textContent = fileName;
+            document.getElementById('linkContainer').style.display = 'none';
+        });
+
+        document.getElementById('uploadButton').addEventListener('click', async () => {
+            const fileInput = document.getElementById('fileInput');
+            const loading = document.getElementById('loading');
+            const linkContainer = document.getElementById('linkContainer');
+            const linkBox = document.getElementById('linkBox');
+            const copyButton = document.getElementById('copyButton');
+
+            if (fileInput.files.length === 0) {
+                showNotification('⛔ Silakan pilih file untuk diupload.');
+                return;
+            }
+
+            showNotification('🔄 Silakan tunggu, proses upload sedang berlangsung...');
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            loading.style.display = 'block';
+            fileInput.disabled = true;
+            document.getElementById('uploadButton').disabled = true;
+            linkContainer.style.display = 'none';
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    linkBox.textContent = data.url;
+                    linkContainer.style.display = 'flex';
+                    showNotification('✅ File berhasil diupload!');
+                } else {
+                    showNotification(data.message || '⛔ Error uploading file.');
+                }
+            } catch (error) {
+                showNotification('⛔ Error uploading file: ' + error.message);
+            } finally {
+                loading.style.display = 'none';
+                fileInput.disabled = false;
+                document.getElementById('uploadButton').disabled = false;
+                document.getElementById('fileName').textContent = '📂 Select Your File';
+                fileInput.value = '';
+            }
+        });
+
+        copyButton.addEventListener('click', () => {
+            const linkBox = document.getElementById('linkBox');
+            navigator.clipboard.writeText(linkBox.textContent)
+                .then(() => showNotification('✅ Link copied to clipboard!'))
+                .catch(err => showNotification('Failed to copy link: ' + err));
+        });
+        
+        document.getElementById('apiLink').addEventListener('click', () => {
+            document.getElementById('codeModal').style.display = 'block'; // Menampilkan modal
+        });
+
+        document.getElementById('copyCodeButton').addEventListener('click', () => {
+            const codeSnippet = document.getElementById('codeSnippet').innerText; // Ambil teks kode
+            navigator.clipboard.writeText(codeSnippet)
+                .then(() => showNotification('✅ Kode berhasil disalin ke clipboard!'))
+                .catch(err => showNotification('Gagal menyalin kode: ' + err));
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('codeModal').style.display = 'none'; // Menyembunyikan modal
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('codeModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
